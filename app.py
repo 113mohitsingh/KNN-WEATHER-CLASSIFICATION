@@ -9,7 +9,7 @@ new point=np.array ([[26, 78]])
 prediction=knn.predict(new_point)[0] 
 plt.figure(figsize=(7, 5)) 
 plt.scatter(X[y==0, 0], X[y==0, 1], label="Sunny", s=100) 
-plt.scatter(X[y==1, 0], X[y==1, 1], label= Rainy", s=100)
+plt.scatter(X[y==1, 0], X[y==1, 1], label= "Rainy", s=100)
 plt.scatter( ) 
     new point [0, 0],
     new point [0, 1], 
