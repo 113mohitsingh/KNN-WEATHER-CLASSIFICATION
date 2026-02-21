@@ -1,15 +1,11 @@
-# Generated from: ID3-ML (1).ipynb
-# Converted at: 2026-02-21T15:39:12.968Z
-# Next step (optional): refactor into modules & generate tests with RunCell
-# Quick start: pip install runcell
-
 import pandas as pd
 import numpy as np
 import math
+import streamlit as st
 
-# -----------------------------
-# Step 1: Dataset
-# -----------------------------
+st.title("KNN Weather Classification")
+
+
 data = pd.DataFrame({
     'Outlook': ['Sunny','Sunny','Overcast','Rain','Rain','Rain',
                 'Overcast','Sunny','Sunny','Rain','Sunny','Overcast',
@@ -22,9 +18,7 @@ data = pd.DataFrame({
                     'Yes','No']
 })
 
-# -----------------------------
-# Step 2: Entropy Function
-# -----------------------------
+
 def entropy(col):
     values, counts = np.unique(col, return_counts=True)
     ent = 0
@@ -33,9 +27,7 @@ def entropy(col):
         ent -= p * math.log2(p)
     return ent
 
-# -----------------------------
-# Step 3: Information Gain
-# -----------------------------
+
 def information_gain(df, attribute, target):
     total_entropy = entropy(df[target])
     values, counts = np.unique(df[attribute], return_counts=True)
@@ -47,19 +39,17 @@ def information_gain(df, attribute, target):
 
     return total_entropy - weighted_entropy
 
-# -----------------------------
-# Step 4: ID3 Algorithm
-# -----------------------------
+
 def id3(df, target, attributes):
-    # If all target values are same → return that value
+    
     if len(np.unique(df[target])) == 1:
         return df[target].iloc[0]
 
-    # If no attributes left → return most common target
+    
     if len(attributes) == 0:
         return df[target].mode()[0]
 
-    # Select best attribute
+   
     gains = [information_gain(df, attr, target) for attr in attributes]
     best_attr = attributes[np.argmax(gains)]
 
@@ -72,9 +62,7 @@ def id3(df, target, attributes):
 
     return tree
 
-# -----------------------------
-# Step 5: Build Decision Tree
-# -----------------------------
+
 attributes = list(data.columns)
 attributes.remove('PlayTennis')
 
@@ -83,9 +71,7 @@ decision_tree = id3(data, 'PlayTennis', attributes)
 print("Decision Tree:")
 print(decision_tree)
 
-# -----------------------------
-# Step 6: Prediction Function
-# -----------------------------
+
 def predict(tree, sample):
     if not isinstance(tree, dict):
         return tree
@@ -98,9 +84,7 @@ def predict(tree, sample):
     else:
         return "Unknown"
 
-# -----------------------------
-# Step 7: Test Prediction
-# -----------------------------
+
 sample = {'Outlook': 'Sunny', 'Humidity': 'High'}
 result = predict(decision_tree, sample)
 
