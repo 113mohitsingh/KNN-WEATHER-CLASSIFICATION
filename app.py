@@ -25,7 +25,7 @@ plt.ylabel("Humidity (%)")
 plt.title("KNN Weather Classification") 
 plt.legend() 
 plt.grid(alpha=0.3) 
-plt.show()
+st.pyplot(plt)
 if prediction == 0: 
     st.success(f"Predicted Weather: Sunny")
 else: 
