@@ -1,8 +1,6 @@
-import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier
-st.title("KNN Weather Classification")
 X=np.array([[30, 70],[25, 75],[27, 70],[31, 70],[23, 85],[28, 80]]) 
 y=np.array([0, 1, 0, 0, 1, 1])
 knn=KNeighborsClassifier(n_neighbors=3) 
@@ -25,8 +23,8 @@ plt.ylabel("Humidity (%)")
 plt.title("KNN Weather Classification") 
 plt.legend() 
 plt.grid(alpha=0.3) 
-st.pyplot(plt)
+plt.show()
 if prediction == 0: 
-    st.success(f"Predicted Weather: Sunny")
+    print("Predicted Weather: Sunny")
 else: 
-    st.success(f"Predicted Weather: Rainy")
+    print("Predicted Weather: Rainy")
