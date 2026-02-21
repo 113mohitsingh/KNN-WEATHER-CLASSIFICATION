@@ -1,9 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighbors Classifier
-
-X=np.array(30, 70), 25, 80, (27, 60), 31, 65, 23, 85), [28, 75])) 
-y=np.array([0, 1, 0, 0, 1, 1,1) 
+X=np.array([[30, 70],[25, 80],[27, 60],[31, 65],[23, 85],[28, 75]]) 
+y=np.array([0, 1, 0, 0, 1, 1])
 knn=KNeighborsClassifier(n_neighbors=3) 
 knn.fit(X, y) 
 new point=np.array ([[26, 78]]) 
